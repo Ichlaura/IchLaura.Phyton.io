@@ -13,3 +13,4 @@ for aline in cuantum:
     print('QB ', values[0], values[1], 'had a rating of ', values[10] )
 
 cuantum.close()
+
