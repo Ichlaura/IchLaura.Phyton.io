@@ -6,10 +6,10 @@
 # Task: Demonstrate file reading
 # Purpose:Correctly use files and functions to solve problems.
 
-qbfile = open("quantum.txt", "r")
+cuantum = open("quantum.txt", "r")
 
-for aline in qbfile:
+for aline in cuantum:
     values = aline.split()
     print('QB ', values[0], values[1], 'had a rating of ', values[10] )
 
-qbfile.close()
+cuantum.close()
