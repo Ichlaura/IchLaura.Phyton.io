@@ -7,7 +7,7 @@
 # Task:Demonstrate use of function parameters and return values.
 # Purpose:Correctly use files and functions to solve problems.
 
-#Tema.....................................................
+#Tema..........................................................................
 
 print ("")
 print ("Potential energy of a system")
@@ -62,3 +62,5 @@ print ("")
 #Blibliografía..........................................................................
 # SERWAY -JEWETT, Física para ciencias e ingenierias, V1")
 # Runestone Academy - Chapter 6
+
+
