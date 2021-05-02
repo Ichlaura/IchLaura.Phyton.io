@@ -7,19 +7,11 @@
 # Purpose:Learn the basics of Python
 
 
-# WELCOME TO CLASS
-# Book: 1. General information-  Runestone Academy
+name = input("Please enter your name: ")
+age = input("Please enter your age ")
+answer = int(age) + 1 
 
 print("")
-print ("Welcome to Physic Class")
-print ("Register Class")
-
-print("-------------")
-
-name = input("What is your name?/ Cuál es su nombre?")
-
+print (f"Hello {name},", f"you are {age}")
 print("")
-print (f"welcome to class {name}", f"Bienvenido a la Clase {name}")
-print("")
-print ("Please read the introduction textbook class before")
-
+print (f"On your next birthday, you will be {answer}")
