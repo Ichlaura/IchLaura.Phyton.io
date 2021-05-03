@@ -5,6 +5,7 @@
 # W02 Prepare: Checkpoint B
 # Task: Demonstrate file reading
 # Purpose:Correctly use files and functions to solve problems.
+
 print("")
 print ("The future of quantum computing and Artificial Intelligence")
 print ("")

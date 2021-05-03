@@ -8,30 +8,28 @@
 
 import random
 from random import randint
-game = "yes"
 print("Welcome to the number guessing game!")
-the_seed_value = input("Enter random seed: ")
-random.seed(the_seed_value)
 
-while game.lower() == "yes":
-num = random.randint(1, 100)
+seed = input("Enter random seed: ")
+random.seed(seed)
 
-guess = int(input("\nPlease enter a guess: "))
-i = 1
-
-while guess != num:
-i = i + 1
-
-if guess < num:
-print("Higher")
-
-elif:
-print("Lower")
-guess = int(input("\nPlease enter a guess: "))
-else:
-print("Congratulations. You guessed it!")
-print(f"It took you {i} guesses.")
-game = input("\nWould you like to play again? (yes/no) ")
-
-if game == "no":
+game = "yes"
+while(game == "yes"):
+    num = random.randint(1,100)
+    count=1
+    print()
+    guess = int(input('Please enter a guess: '))
+    while(num != guess):
+        if(num < guess):
+            print("Lower")
+            print()
+        elif(num > guess):
+            print("Higher")
+            print()
+        guess = int(input('Please enter a guess: '))
+        count=count+1
+    print("Congratulations. You guessed it!")
+    print("It took you",count,"guesses.")
+    print()
+    game = str(input("Would you like to play again (yes/no)? "))
 print("Thank you. Goodbye.")
