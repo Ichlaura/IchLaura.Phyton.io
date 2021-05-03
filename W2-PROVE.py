@@ -1,14 +1,16 @@
+
+
 # Laura Nuñez - CS 241 - BYU -Idaho 
 # Week 2 
 # W02 Prove: Homework - Data Structures
 # Task: Articulate and perform Big-O analyses
 # Purpose:Write programs that correctly use classes and objects to solve problems
 
-def enter_file():
+def datafile():
     filename = input("Please enter the data file /Users/laurapaolanunez/Documents/BYU/BYU - IDAHO/Computer programming/PYTHON/rates.csv: ")
     return filename
 
-def extracting(filename):
+def extract(filename):
     num_lines = 0
     total = 0
     
@@ -59,8 +61,8 @@ def high_low(filename):
         
     
 def main():
-    filename = enter_file()
-    extracting(filename)
+    filename = datafile()()
+    extract(filename)
     high_low(filename)
     
     
