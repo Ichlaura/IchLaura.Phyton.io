@@ -7,31 +7,32 @@
 # Task:Demonstrate use of function parameters and return values.
 # Purpose:Correctly use files and functions to solve problems.
 
-sum = 0
-
-def prompt_number(n):
 
 
-   n1 = input("Please enter a positive number: ")
-   n2 = input("Please enter a positive number: ")
-   n3 = input("Please enter a positive number: ")
+def prompt_number():
 
-if (n1,n2,n3 > 0):
+   n = int(input("Please enter a positive number: "))
+   while n < 0:
+    print("Invalid entry, The number must be positive.")
+    n=int(input("Enter a positive number:"))
+    pass 
+   print()
+   return n
+         
 
- y = input("Please enter a positive number: ")
- 
-elif(n1,n2,n3 > 0):
-    print("Invalid entry. The number must be positive")
+def compute_sum(n1,n2,n3):
+ return (n1 + n2 + n3)
+
+def main():
+    
+   a = prompt_number()
+   b = prompt_number()
+   c = prompt_number()
    
+   sum = compute_sum(a, b, c)
+   
+   print("The sum is: %d" % (sum))
 
-
-def compute_sum ():
-
- sum = n1 + n2 + n3
-
-print (f"the sum is:{sum}" )
 
 if __name__ == "__main__":
-    main()
-
-
+   main()
