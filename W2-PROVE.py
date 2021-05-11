@@ -2,9 +2,9 @@
 
 # Laura Nuñez - CS 241 - BYU -Idaho 
 # Week 2 
-# W02 Prove: Homework - Data Structures
-# Task: Articulate and perform Big-O analyses
-# Purpose:Write programs that correctly use classes and objects to solve problems
+# W02 Prove: Homework 
+#Task: Use Python to read from files and process information
+#Purpose:Correctly use files and functions to solve problems.
 
 def datafile():
     filename = input("Please enter the data file /Users/laurapaolanunez/Documents/BYU/BYU - IDAHO/Computer programming/PYTHON/rates.csv: ")
