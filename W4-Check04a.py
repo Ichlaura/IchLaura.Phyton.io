@@ -42,7 +42,7 @@ class Book:
         print(self.publisher)
         print("Author:")
         print(self.author)
-        
+   #new book     
 def main():
     person1 = Person()
     aa = person1.display()
