@@ -1,5 +1,6 @@
 
 
+ 
 class Rational_number():
     def __init__(self):
         self.numerator = 0
