@@ -1,0 +1,63 @@
+
+Outcomes
+At the end of this week, successful students will be able to:
+
+01._Show fluency in discussing inheritance.
+
+02._Write programs that correctly use inheritance to solve problems.
+
+Preparation Material
+Please read the following:
+https://www.digitalocean.com/community/tutorials/understanding-class-inheritance-in-python-3
+
+Supplementary Material
+
+PYTHON 3 INHERITANCE SYNTAX AT A GLANCE
+The reading above made use of the syntax of inheritance. In its simplest form, 
+here is what you need to do to create a derived class:
+
+We first need to define the base class. Nothing fancy here:
+
+class Product:
+    def __init__(self):
+        # Define any member variables that are shared among all
+        # derived classes
+        self.price = 0.0
+        self.quantity = 0
+
+    # We can also define any methods that are shared among all classes
+
+    def get_total_price(self):
+        return self.price * self.quantity
+We now define a derived class (or multiple derived classes)
+
+
+# Notice that we put Product in parentheses to show they we are inheriting from it
+class Cereal(Product):
+    def __init__(self):
+        # We override the base class __init__ function to declare any cereal-specific
+        # member variables. Notice that we MUST call the super().__init__ function
+        # to ensure that the member variables in the base class also get set up.
+
+        # First call the base class version
+        super().__init__()
+
+        # Now, set up any member variables
+        self.weight = 0.0
+
+    # We can also define any functions that are specific to the cereal class.
+
+    def calculate_shipping_cost(self):
+        return 0.05 * self.weight
+
+With these classes in place, we can now create an instance of type cereal and use
+any methods or properties defined in either the base or the derived class:
+
+
+corn_flakes = Cereal()
+corn_flakes.price = 3.49
+corn_flakes.quantity = 1
+corn_flakes.weight = 2.05
+
+price = corn_flakes.get_total_price()
+cost = corn_flakes.calculate_shipping_cost()

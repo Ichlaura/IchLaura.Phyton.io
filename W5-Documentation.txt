@@ -1,0 +1,59 @@
+"""
+05 Prepare : Reading
+Course: CS241 BYU-I
+Event-driven programming
+"""
+
+Outcomes
+At the end of this week, successful students will be able to:
+
+01._Show fluency in discussing event-driven programming.
+
+02._Write programs that correctly use event-driven programming to solve problems.
+
+03._Install, configure, and use programming/debugging tools in a local 
+development environment.
+
+Getting Set Up
+This week we will begin using the Arcade library that we will use for several 
+projects. The purpose of using a library and games for these projects is not to 
+learn the principles of game design and programming, but rather to see how object
+-oriented programming can help simplify otherwise very complex projects.
+
+INSTALLING PYTHON AND AN IDE
+The first step is to install Python on your own computer and to also install a 
+program to help you write, run, and debug Python programs. Programs that help you
+do these things are called, Integrated Development Environments, or IDEs.
+
+The arcade library instructions below mention using PyCharm, and while that is 
+not a bad choice, this semester we are going to use a different IDE called, 
+Thonny. Whereas PyCharm is an industrial strength tool, Thonny is designed to be 
+more simple and easy to set up and use. In fact, the Thonny installer installs 
+Python 3 as well, so you don't have to get it separately.
+
+To install it, go to:
+https://thonny.org/
+
+GETTING THE ARCADE LIBRARY
+With Thonny, obtaining packages like the Arcade library is very easy. Open Thonny
+, and then click: Tools -> Manage Packages. Type "arcade" into the search box, 
+and click search. This should bring up the Arcade Library with an "install" 
+button you can click to install it for you.
+
+Preparation Material
+
+GETTING FAMILIAR WITH THE ARCADE LIBRARY
+Your preparation task is to become familiar with the Arcade library:
+https://arcade.academy/
+
+Please try to get it downloaded and configured to the point where you can run one
+of the simple examples on the site. We will also work through this together in 
+our team activity this week.
+
+You can ignore their instructions about downloading and configuring PyCharm the 
+arcade library, because you'll be using Thonny for that.
+
+EVENT DRIVEN PROGRAMMING
+Finally, we will also be discussing event driven programming. Please read the 
+Wikipedia article on the topic:
+https://en.wikipedia.org/wiki/Event-driven_programming

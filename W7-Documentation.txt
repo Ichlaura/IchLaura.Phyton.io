@@ -1,0 +1,84 @@
+"""
+07 Prepare : Reading
+Course: CS241 BYU-I
+Polymorphism
+"""
+
+Outcomes
+At the end of this week, successful students will be able to:
+
+01._Show fluency in discussing polymorphism.
+
+02._Write programs that correctly use polymorphism to solve problems.
+
+Preparation Material
+
+For this week, please read the following introduction to Polymorphism:
+https://pythonspot.com/en/polymorphism/
+
+Then, read this more detailed description of how this works in Python:
+https://www.thedigitalcatonline.com/blog/2014/08/21/python-3-oop-part-4-polymorphism/
+
+Additional Material
+
+Sometimes, we create a base class for the sake of helping to organize and combine
+common elements of derived classes, yet it doesn't make sense to instantiate the 
+base class on its own. For example, if we were creating classes to model bank 
+accounts, we could imagine having one class for a checking account, and another 
+for a savings account. Because these classes would have things in common, we 
+could imagine creating a base "Account" class. And yet, you can never create a 
+generic account. At the end of the day, you either have a checking account or a 
+savings account.
+
+ABSTRACT BASE CLASSES
+A base class that should not be instantiated on its own, but is used to define 
+common elements of derived classes is called an abstract base class.Often with 
+abstract base classes, we can see that all derived classes should implement a 
+common method, but the logic of this method will be different for each derived 
+class. For example, all bank accounts may have a method to calculate fees, but 
+how this is done for savings accounts could be very different for checking 
+accounts. In this case it may be useful to define this method in the base class 
+to show that it's there, but then we would expect each derived class to override 
+it.
+
+ABSTRACT METHODS
+For methods that we expect to always be overridden, we can go one step further 
+and force them to be overridden by declaring them as "abstract methods."In this 
+case, if someone comes along and creates a new type of bank account later, they 
+will not be able to use it (they'll get an error) unless they override all the 
+abstract methods. This guarantees that when we use any type of account we can 
+count on the method being there.
+
+PYTHON 3 SYNTAX
+In Python 3, abstract base classes are defined by inheriting from a class called 
+"ABC". This is done as follows:
+
+from abc import ABC
+
+class Account(ABC):
+    def __init__(self):
+        self.name = ""
+        self.balance = 0.0
+
+Please note that "ABC" is the actual name that you will use, it is not just a 
+made up term like "use class x to do thing y." It stands for Abstract Base Class.
+
+Abstract methods are declared in this abstract base class, by using the 
+abstractmethod decorator before the method as follows:
+
+from abc import ABC
+from abc import abstractmethod
+
+class Account(ABC):
+    def __init__(self):
+        self.name = ""
+        self.balance = 0.0
+
+    @abstractmethod
+    def get_fees(self):
+        pass
+
+Now, all classes that derive from the Account class must implement the get_fees 
+method.
+As a side note, be aware that if desired, you can provide a body to the abstract method that could be invoked 
+with the super().get_fees() call in a derived class.
