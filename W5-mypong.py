@@ -22,29 +22,29 @@ MOVE_AMOUNT = 5
 SCORE_HIT = 1
 SCORE_MISS = 5
 
-#Create class Point 
+#Class Point 
 class Point:
     def __init__(self):
         self.x = 10
         self.y = random.uniform(10, 300)
         
-# Create class Velocity
+# Class Velocity
 class Velocity:
     def __init__(self):
         self.dx = random.uniform(3, 6)
         self.dy = random.uniform(-3, 3)
 
-#Create class Ball and attributes        
+#Class Ball and attributes        
 class Ball:
     def __init__(self):
         self.center = Point()
         self.velocity = Velocity()
         
-    # Create draw method to draw the ball
+    # Draw method to draw the ball
     def draw(self):
         arcade.draw_circle_filled(self.center.x, self.center.y, BALL_RADIUS, arcade.color.BLACK)
         
-    #advance method to give the ball movement 
+    #Advance method to give the ball movement 
     def advance(self):
         self.center.x += self.velocity.dx
         self.center.y += self.velocity.dy
@@ -63,23 +63,22 @@ class Ball:
         self.velocity.dx = random.uniform(4, 8)
         self.velocity.dy = random.uniform(-4, 4)
 
-#We are gonna create class Paddle
+#Class Paddle
 class Paddle:
     def __init__(self):
         self.center = Point()
         self.center.x = SCREEN_WIDTH - 20
         self.center.y = PADDLE_WIDTH
 
-    # Create draw method to draw the ball
+    # Draw method to draw the ball
     def draw(self):
         arcade.draw_rectangle_filled(self.center.x, self.center.y, PADDLE_WIDTH, PADDLE_HEIGHT, arcade.color.BLACK)
 
-    #give moveing to paddle
+    #Moveing to paddle
     def move_up(self):
         if (self.center.y < (SCREEN_HEIGHT-PADDLE_WIDTH)):
             self.center.y += MOVE_AMOUNT
-            
-    #give moveing to paddle
+   
     def move_down(self):
         if (self.center.y > PADDLE_WIDTH):
             self.center.y -= MOVE_AMOUNT
