@@ -1,4 +1,11 @@
 
+
+# Laura Nuñez - CS 241 - BYU -Idaho 
+# Week 4
+# W04 - Prove : Homework - Data Structures
+#Articulate the strengths and weaknesses of Linked Lists.
+#Use Linked Lists in Python to solve problems.
+
 #deque
 from collections import deque
 
@@ -13,6 +20,7 @@ class Song:
     def prompt(self):
         self.title = input("Enter title name: ")
         self.artist = input("Enter artist name: ")
+        
 # creó una función display que muestra en la pantalla el titulo y el artista
     def display(self):
         print("Playing song: ")

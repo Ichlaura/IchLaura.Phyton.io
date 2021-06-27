@@ -1,4 +1,12 @@
 
+"""
+File: pong.py
+Original Author: Br. Burton
+Designed to be completed by others
+This program implements a simplistic version of the
+classic Pong arcade game.
+"""
+
 import arcade
 import random
 
