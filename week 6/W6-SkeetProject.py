@@ -2,12 +2,14 @@
 File: skeet.py
 Original Author: Br. Burton
 Designed to be completed by others
-
+Completed by: Laura Nuñez
 This program implements an awesome version of skeet.
 """
 import arcade
 import math
 import random
+
+from abc import abstractmethod  # needed to resolve some console errors
 
 # These are Global constants to use throughout the game
 SCREEN_WIDTH = 600
@@ -26,7 +28,22 @@ TARGET_COLOR = arcade.color.CARROT_ORANGE
 TARGET_SAFE_COLOR = arcade.color.AIR_FORCE_BLUE
 TARGET_SAFE_RADIUS = 15
 
+class Velocity:
+    """
+    Holds velocity variables.
+    """
+    def __init__(self):
+        self.dx = 0.0
+        self.dy = 0.0
 
+
+class Point:
+    """
+    Point class for moving objects.
+    """
+    def __init__(self):
+        self.x = 0.0
+        self.y = 0.0
 
 
 class Rifle:
@@ -42,6 +59,135 @@ class Rifle:
 
     def draw(self):
         arcade.draw_rectangle_filled(self.center.x, self.center.y, RIFLE_WIDTH, RIFLE_HEIGHT, RIFLE_COLOR, 360-self.angle)
+
+
+class FlyingObj:
+    def __init__(self):
+        self.center = Point()
+        self.velocity = Velocity()
+        self.radius = 0.0
+        self.alive = True
+
+    @abstractmethod
+    def draw(self):
+        """ Added by child classes. """
+        pass
+
+    def advance(self):
+        """ Moves the object forward. """
+        self.center.x += self.velocity.dx
+        self.center.y += self.velocity.dy
+
+    def is_off_screen(self, _screen_width, _screen_height):
+        """ Checks to see if the object is on the screen. """
+        if self.center.x > _screen_width or self.center.y > _screen_height:
+            return True
+        else:
+            return False
+
+
+class Bullet(FlyingObj):
+    """ Template for the bullets in the game. """
+    def __init__(self):
+        super().__init__()
+        self.radius = BULLET_RADIUS
+        self.color = BULLET_COLOR
+
+    def draw(self):
+        """ Creates a circle for the bullet. """
+        arcade.draw_circle_filled(self.center.x, self.center.y, self.radius, self.color)
+
+    def fire(self, angle):
+        """ Does some fancy math stuff for the bullet path. """
+        self.velocity.dx = math.cos(math.radians(angle)) * BULLET_SPEED
+        self.velocity.dy = math.sin(math.radians(angle)) * BULLET_SPEED
+
+
+class Target(FlyingObj):
+    """ Base class for the child targets. """
+    def __init__(self):
+        super().__init__()
+        self.center.y = random.uniform(SCREEN_HEIGHT/2, SCREEN_HEIGHT)
+        self.velocity.dx = random.uniform(1, 5)
+        self.velocity.dy = random.uniform(-2, 2)
+
+    @abstractmethod
+    def draw(self):
+        """ Added by child classes. """
+        pass
+
+    @abstractmethod
+    def hit(self):
+        """ Added by child classes. """
+        pass
+
+
+class StandardTarget(Target):
+    """ Basic target, round, one hit, one point. """
+    def __init__(self):
+        super().__init__()
+        self.radius = TARGET_RADIUS
+        self.point = 1
+        self.color = TARGET_COLOR
+
+    def draw(self):
+        """ Draws the circle for the target object. """
+        arcade.draw_circle_filled(self.center.x, self.center.y, self.radius, self.color)
+
+    def hit(self):
+        """ If hit, change alive to false. """
+        self.alive = False
+        return self.point
+
+
+class StrongTarget(Target):
+    """ Strong target, round, three hits, five points. """
+    def __init__(self):
+        super().__init__()
+        self.velocity.dx = random.uniform(1, 3)
+        self.velocity.dy = random.uniform(-2, 2)
+        self.radius = TARGET_SAFE_RADIUS
+        self.point = 5
+        self.color = TARGET_COLOR
+        self.lives = 3
+
+    def draw(self):
+        """ Draws the circle for the target object. """
+        arcade.draw_circle_outline(self.center.x, self.center.y, self.radius, self.color)
+        # Adds the self.lives count to the center of the circle
+        text_x = self.center.x - (self.radius / 2.5)
+        text_y = self.center.y - (self.radius / 1.1)
+        arcade.draw_text(repr(self.lives), text_x, text_y, self.color, font_size=20)
+
+    def hit(self):
+        """ If hit, reduce life count. If count = 0, change self.alive to false. """
+        self.lives -= 1
+        if self.lives > 0:
+            self.alive = True
+            self.point = 1
+            return self.point
+        else:
+            self.alive = False
+            self.point = 5
+            return self.point
+
+
+class SafeTarget(Target):
+    """ Safe target, square, one hit, minus 10 points. """
+    def __init__(self):
+        super().__init__()
+        self.radius = TARGET_RADIUS
+        self.point = -10
+        self.color = TARGET_SAFE_COLOR
+
+    def draw(self):
+        """ Draws the square on the screen. """
+        arcade.draw_rectangle_filled(self.center.x, self.center.y, self.radius*1.5, self.radius*1.5, self.color)
+
+    def hit(self):
+        """ If hit, change alive to false. """
+        self.alive = False
+        return self.point
 
 
 class Game(arcade.Window):
@@ -76,7 +222,8 @@ class Game(arcade.Window):
         self.bullets = []
 
         # TODO: Create a list for your targets (similar to the above bullets)
-
+        self.bullets = []
+        self.targets = []
 
         arcade.set_background_color(arcade.color.WHITE)
 
@@ -96,7 +243,8 @@ class Game(arcade.Window):
             bullet.draw()
 
         # TODO: iterate through your targets and draw them...
-
+        for target in self.targets:  
+            target.draw()
 
         self.draw_score()
 
@@ -125,6 +273,8 @@ class Game(arcade.Window):
             bullet.advance()
 
         # TODO: Iterate through your targets and tell them to advance
+        for target in self.targets:  
+            target.advance()
 
     def create_target(self):
         """
@@ -133,6 +283,20 @@ class Game(arcade.Window):
         """
 
         # TODO: Decide what type of target to create and append it to the list
+
+        rand_int = random.randint(1, 3)
+
+        if rand_int == 1: 
+            target = StandardTarget()
+            self.targets.append(target)
+
+        elif rand_int == 2:
+            target = StrongTarget()
+            self.targets.append(target)
+
+        elif rand_int == 3:
+            target = SafeTarget()
+            self.targets.append(target)
 
     def check_collisions(self):
         """
